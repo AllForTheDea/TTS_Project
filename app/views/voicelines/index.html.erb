@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Voicelines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Character</th>
+      <th>Line</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @voicelines.each do |voiceline| %>
+      <tr>
+        <td><%= voiceline.user_id %></td>
+        <td><%= voiceline.character %></td>
+        <td><%= voiceline.line_id %></td>
+        <td><%= voiceline.project_id %></td>
+        <td><%= link_to 'Show', voiceline %></td>
+        <td><%= link_to 'Edit', edit_voiceline_path(voiceline) %></td>
+        <td><%= link_to 'Destroy', voiceline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Voiceline', new_voiceline_path %>

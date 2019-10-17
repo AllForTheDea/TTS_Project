@@ -1,0 +1,43 @@
+<%= form_with(model: character_line, local: true) do |form| %>
+  <% if character_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(character_line.errors.count, "error") %> prohibited this character_line from being saved:</h2>
+
+      <ul>
+        <% character_line.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+   <div class="field">
+    <%= form.label :character %>
+    <%= form.text_field :character %>
+  </div>
+
+  <div class="field">
+    <%= form.label :line %>
+    <%= form.text_field :line %>
+  </div>
+ <!--
+  <div class="field">
+    <%= form.label :voiceline_id %>
+    <%= form.number_field :voiceline_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+-->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

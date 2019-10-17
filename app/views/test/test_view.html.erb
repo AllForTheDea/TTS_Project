@@ -1,0 +1,66 @@
+<h1>Testing audio capabilities</h1>
+
+<div class = 'well'> 
+<button id = 'record'>record</button>
+<button id = 'pause'>pause</button>
+<button id = 'stop'> Stop </button>
+
+<script>
+  // create the button relations and state trackers
+  const record = document.getElementById('record');
+  const pause = document.getElementById('pause');
+  const stop = document.getElementById('stop');
+
+  // create a stream that pulls mic data with a newly constructed media recorder object and an array that is for storing
+  // the stream data from the mic. Put your pause function in here because it affects the current stream.
+  console.log('starting the stream');
+  const currentStream = function(stream) {
+    // the constant tracking the audio type
+    const audio_type = {mimeType: 'audio/webm'};
+    //the array that we will store the audio data points in
+    const recordedChunks = [];
+    //the variable created for the stream instance
+    const currentRecording = new MediaRecorder(stream, audio_type);  
+    
+
+    // Checks the state of the recording and behaves based on the result.  States are named in the mediarecorder api site
+    pause.onclick = function(){
+      if(currentRecording.state === 'recording'){
+        currentRecording.pause();
+        console.log('Paused bro');
+      }
+      else if (currentRecording.state === 'paused'){
+        currentRecording.resume()
+        console.log('started up again');
+      }
+    }
+
+    stop.onclick = function(){
+      currentRecording.stop()
+      console.log('so, in theory, this stops the recording and sends a data available event.');
+    }
+
+    currentRecording.addEventListener('dataavailable', function(e) {
+      if (e.data.size > 0) {
+        recordedChunks.push(e.data);
+        console.log('event listener did trigger and we have now pushed the data into the array');
+      }
+
+
+    });
+    console.log('Starting media recorder...');
+      currentRecording.start(100);
+      console.log('Media recorder started successfully');
+
+  };
+
+      record.onclick = function(){
+
+
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      .then(currentStream);
+    console.log('Actually starting to record?');
+  }
+
+</script>
+</div>

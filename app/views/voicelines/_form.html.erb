@@ -1,0 +1,37 @@
+<%= form_with(model: voiceline, local: true) do |form| %>
+  <% if voiceline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(voiceline.errors.count, "error") %> prohibited this voiceline from being saved:</h2>
+
+      <ul>
+        <% voiceline.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :character %>
+    <%= form.text_field :character %>
+  </div>
+
+  <div class="field">
+    <%= form.label :line_id %>
+    <%= form.number_field :line_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

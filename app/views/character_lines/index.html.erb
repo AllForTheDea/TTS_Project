@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Character Lines</h1>
+
+<table class ="table">
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Line</th>
+      <th>Voiceline</th>
+      <th>User</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @character_lines.each do |character_line| %>
+      <tr>
+        <td><%= character_line.character %></td>
+        <td><%= character_line.line %></td>
+        <td><%= character_line.voiceline_id %></td>
+        <td><%= character_line.user_id %></td>
+        <td><%= character_line.project_id %></td>
+        <td><%= link_to 'Show', character_line %></td>
+        <td><%= link_to 'Edit', edit_character_line_path(character_line) %></td>
+        <td><%= link_to 'Destroy', character_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>*
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Character Line', new_character_line_path %>
